@@ -1,0 +1,65 @@
+﻿<Window x:Class="TFileConverter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TFileConverter"
+        mc:Ignorable="d"
+        Title="TFileConverter" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+    </Window.Resources>
+    <Grid Background="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="140*"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+        <Label Content="원본폴더" HorizontalAlignment="Center" Margin="32,20,32,21" Grid.Column="0" Grid.Row="0" Width="58" VerticalAlignment="Center" Height="26"/>
+        <Label Content="복사될 폴더" HorizontalAlignment="Center" Margin="23,21,23,20" Grid.Column="0" Grid.Row="1" Width="76" VerticalAlignment="Center" Height="26"/>
+        <CheckBox x:Name="ChkIsInputPathReculsive" Content="하위폴더 포함" Grid.Column="3" HorizontalAlignment="Center" Margin="15,26,16,26" VerticalAlignment="Center" ClickMode="Press" IsEnabled="False" Checked="ChkIsInputPathReculsive_Checked" Unchecked="ChkIsInputPathReculsive_Unchecked" />
+        <TextBox x:Name="TxtBoxInputPath" Margin="5,20,20.568,19" TextWrapping="Wrap"                  
+                 Grid.Row="0" VerticalAlignment="Center" Height="28" Grid.Column="1" VerticalContentAlignment="Center" TextChanged="TxtBoxInputPath_TextChanged" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="TxtBoxOutputPath" HorizontalAlignment="Left" Margin="5,19,0,20" TextWrapping="Wrap" 
+                 Grid.Row="1" Width="248" VerticalAlignment="Center" Height="28" Grid.Column="1" VerticalContentAlignment="Center" TextChanged="TxtBoxOutputPath_TextChanged" Grid.ColumnSpan="2"/>
+        <Button x:Name="BtnInputPath" Content="경로설정" Grid.Column="4" HorizontalAlignment="Center" Margin="11,20,11,19" VerticalAlignment="Center" Width="210" Click="BtnInputPath_Click" Height="28" Grid.ColumnSpan="3"/>
+        <Button x:Name="BtnOutputPath" Content="경로설정" Grid.Column="4" HorizontalAlignment="Center" Margin="11,19,11,20" Grid.Row="1" VerticalAlignment="Center" Width="210" Click="BtnOutputPath_Click" Height="28" Grid.ColumnSpan="3"/>
+        <ListView x:Name="LvInfo" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="4" MaxWidth="Infinity" ScrollViewer.CanContentScroll="True" Height="244" Width="486" Grid.RowSpan="4" MouseDown="LvInfo_MouseDown">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding index}">
+                        <GridViewColumnHeader Width="Auto">순번</GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding sourceString}">
+                        <GridViewColumnHeader Width="Auto">원본 텍스트</GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding destnationString}">
+                        <GridViewColumnHeader Width="Auto">변환될 텍스트</GridViewColumnHeader>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Content="원본텍스트" HorizontalAlignment="Center" Margin="10,21,10,19" Grid.Column="4" Grid.Row="2" Width="90" VerticalAlignment="Center" Height="26"/>
+        <Label Content="변환될 텍스트" HorizontalAlignment="Center" Margin="10,19,10,21" Grid.Column="4" Grid.Row="3" Width="90" VerticalAlignment="Center" Height="26"/>
+        <TextBox x:Name="TxtBoxFromWord" Grid.Column="5" HorizontalAlignment="Left" Height="28" Margin="5" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="140" Grid.ColumnSpan="2" TextChanged="TxtBoxFromWord_TextChanged" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="TxtBoxToWord" Grid.Column="5" HorizontalAlignment="Left" Height="28" Margin="5" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" Width="140" Grid.ColumnSpan="2" TextChanged="TxtBoxToWord_TextChanged" VerticalContentAlignment="Center"/>
+        <Button x:Name="BtnAdd" Content="추가" Grid.Column="4" HorizontalAlignment="Left" Margin="5" Grid.Row="4" VerticalAlignment="Top" Width="50" Height="24" Click="BtnAdd_Click" IsEnabled="False" />
+        <Button x:Name="BtnDelete" Content="삭제" Grid.Column="5" HorizontalAlignment="Left" Margin="5" Grid.Row="4" VerticalAlignment="Top" Width="50" Height="24" Click="BtnDelete_Click" IsEnabled="False"/>
+        <Button x:Name="BtnChange" Content="변경" Grid.Column="6" HorizontalAlignment="Left" Margin="5" Grid.Row="4" VerticalAlignment="Top" Width="50" Height="24" Click="BtnChange_Click" IsEnabled="False"/>
+        <Button x:Name="BtnStart" Content="변환" Grid.Column="4" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Row="5" VerticalAlignment="Top" Width="210" Height="28" Grid.ColumnSpan="3" Click="BtnStart_Click"/>
+    </Grid>
+</Window>
